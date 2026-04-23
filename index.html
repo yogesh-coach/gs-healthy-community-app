@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GS Healthy Community – Body Parameter Record System</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="header-card">
+        <div class="brand-block header-left">
+          <div class="logo-box">
+            <img class="brand-logo" src="./gs-community-logo.png" alt="GS logo" />
+          </div>
+          <div class="brand-title">
+            <p class="eyebrow">GS APP</p>
+            <h1>GS Healthy Community</h1>
+            <p class="subtitle">Body Parameter Record System for guided wellness consultations</p>
+          </div>
+        </div>
+        <div class="header-actions">
+          <button class="action-btn secondary" id="saveButton" type="button">Save Data</button>
+          <button class="action-btn secondary" id="resetButton" type="button">Reset Form</button>
+          <button class="action-btn primary" id="pdfButton" type="button">Download PDF Report</button>
+        </div>
+      </header>
+
+      <section class="tabs-card">
+        <div class="tab-list" role="tablist" aria-label="Wellness coaching steps">
+          <button class="step-tab active" type="button" role="tab" aria-selected="true" data-step="0">1. Client Details</button>
+          <button class="step-tab" type="button" role="tab" aria-selected="false" data-step="1">2. Eating Habits</button>
+          <button class="step-tab" type="button" role="tab" aria-selected="false" data-step="2">3. Health Checklist</button>
+          <button class="step-tab" type="button" role="tab" aria-selected="false" data-step="3">4. Final Report</button>
+        </div>
+      </section>
+
+      <form id="healthForm" novalidate>
+        <section class="step-panel active">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Step 1</p>
+              <h2>Client Details + Body Parameters</h2>
+              <p class="section-copy">Record client information and core body metrics in a clean consultation layout.</p>
+            </div>
+            <div class="section-badge">Coaching Intake</div>
+          </div>
+
+          <div class="stack">
+            <div class="full-card">
+              <h3>Client Details</h3>
+              <div class="fields-grid six">
+                <div class="field-group">
+                  <label for="name">Name</label>
+                  <input id="name" name="name" type="text" placeholder="Enter full name" />
+                </div>
+                <div class="field-group">
+                  <label for="mobile">Mobile Number</label>
+                  <input id="mobile" name="mobile" type="tel" placeholder="Enter mobile number" />
+                </div>
+                <div class="field-group">
+                  <label for="date">Date</label>
+                  <input id="date" name="date" type="date" />
+                </div>
+                <div class="field-group">
+                  <label for="inviteBy">Invite By</label>
+                  <input id="inviteBy" name="inviteBy" type="text" placeholder="Enter referral name" />
+                </div>
+                <div class="field-group">
+                  <label for="coachName">Coach Name</label>
+                  <input id="coachName" name="coachName" type="text" placeholder="Enter coach name" />
+                </div>
+                <div class="field-group">
+                  <label for="coachNumber">Coach Number</label>
+                  <input id="coachNumber" name="coachNumber" type="tel" placeholder="Enter coach number" />
+                </div>
+              </div>
+            </div>
+
+            <div class="body-grid">
+              <div class="sub-card">
+                <h3>Basic Body Inputs</h3>
+                <div class="stack">
+                  <div class="field-group">
+                    <span class="field-title">Gender</span>
+                    <div class="toggle-group">
+                      <label class="toggle-pill">
+                        <input type="radio" name="gender" value="Male" />
+                        <span>Male</span>
+                      </label>
+                      <label class="toggle-pill">
+                        <input type="radio" name="gender" value="Female" />
+                        <span>Female</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="fields-grid six">
+                    <div class="field-group">
+                      <label for="age">Age</label>
+                      <input id="age" name="age" type="number" min="0" placeholder="Years" />
+                    </div>
+                    <div class="field-group">
+                      <label for="height">Height (cm)</label>
+                      <input id="height" name="height" type="number" min="0" step="0.1" placeholder="Height" />
+                    </div>
+                    <div class="field-group">
+                      <label for="weight">Weight (kg)</label>
+                      <input id="weight" name="weight" type="number" min="0" step="0.1" placeholder="Weight" />
+                    </div>
+                    <div class="field-group">
+                      <label for="bodyFat">Body Fat %</label>
+                      <input id="bodyFat" name="bodyFat" type="number" min="0" step="0.1" placeholder="Body fat %" />
+                    </div>
+                    <div class="field-group">
+                      <label for="visceralFat">Visceral Fat</label>
+                      <input id="visceralFat" name="visceralFat" type="number" min="0" step="0.1" placeholder="Visceral fat" />
+                    </div>
+                    <div class="field-group">
+                      <label for="bmi">BMI (manual)</label>
+                      <input id="bmi" name="bmi" type="number" min="0" step="0.1" placeholder="Manual BMI" />
+                    </div>
+                    <div class="field-group">
+                      <label for="bmr">BMR</label>
+                      <input id="bmr" name="bmr" type="number" min="0" step="0.1" placeholder="BMR value" />
+                    </div>
+                    <div class="field-group">
+                      <label for="bodyAge">Body Age</label>
+                      <input id="bodyAge" name="bodyAge" type="number" min="0" placeholder="Body age" />
+                    </div>
+                  </div>
+
+                  <div class="metric-grid">
+                    <article class="metric-card highlight">
+                      <span>Ideal Weight</span>
+                      <strong id="idealWeightValue">--</strong>
+                      <small>Ideal Weight = height - 100</small>
+                    </article>
+                    <article class="metric-card">
+                      <span>BMI Auto Result</span>
+                      <strong id="bmiAutoValue">--</strong>
+                      <small id="bmiAutoCaption">Enter height and weight</small>
+                    </article>
+                    <article class="metric-card">
+                      <span>BMI Category</span>
+                      <strong class="metric-badge" id="bmiCategoryAuto" data-state="neutral">--</strong>
+                      <small>Underweight / Normal / Overweight / Obese</small>
+                    </article>
+                  </div>
+                </div>
+              </div>
+
+              <aside class="reference-box">
+                <h3>Advanced Body Parameters Reference</h3>
+                <div class="reference-list">
+                  <div>Male Fat Normal = 10%-20%</div>
+                  <div>Female Fat Normal = 20%-30%</div>
+                  <div>Visceral Fat Normal = 1%-9%</div>
+                  <div>BMI Normal = 18.5-24.9</div>
+                  <div id="bodyFatNormalRange">Normal 10-20% / 20-30%</div>
+                </div>
+              </aside>
+            </div>
+          </div>
+        </section>
+
+        <section class="step-panel" hidden>
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Step 2</p>
+              <h2>Eating Habits</h2>
+              <p class="section-copy">Capture a clean day-wise nutrition picture for each consultation.</p>
+            </div>
+            <div class="section-badge">Daily Intake</div>
+          </div>
+
+          <div class="stack">
+            <div class="full-card">
+              <div class="stack">
+                <div class="row-3">
+                  <div class="field-group">
+                    <label for="wakeUpTime">Wake Up Time</label>
+                    <input id="wakeUpTime" name="wakeUpTime" type="time" />
+                  </div>
+                  <div class="field-group">
+                    <span class="field-title">Tea / Coffee</span>
+                    <div class="toggle-group">
+                      <label class="toggle-pill">
+                        <input type="radio" name="teaCoffee" value="Yes" />
+                        <span>Yes</span>
+                      </label>
+                      <label class="toggle-pill">
+                        <input type="radio" name="teaCoffee" value="No" />
+                        <span>No</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="field-group hidden" id="numberOfCupsRow">
+                    <label for="numberOfCups">Number of Cups</label>
+                    <input id="numberOfCups" name="numberOfCups" type="number" min="0" step="1" placeholder="How many cups?" />
+                  </div>
+                </div>
+
+                <div class="row-grid">
+                  <div class="field-group">
+                    <label for="breakfastTime">Breakfast Time</label>
+                    <input id="breakfastTime" name="breakfastTime" type="time" />
+                  </div>
+                  <div class="field-group">
+                    <label for="breakfastWhat">Breakfast What</label>
+                    <select id="breakfastWhat" name="breakfastWhat">
+                      <option value="">Select breakfast</option>
+                      <option>Skip</option>
+                      <option>Idli</option>
+                      <option>Dosa</option>
+                      <option>Poha &amp; Upma</option>
+                      <option>Paratha</option>
+                      <option>Bread + Omelette</option>
+                      <option>Tea or Milk</option>
+                      <option>All</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row-grid">
+                  <div class="field-group">
+                    <label for="lunchTime">Lunch Time</label>
+                    <input id="lunchTime" name="lunchTime" type="time" />
+                  </div>
+                  <div class="field-group">
+                    <label for="lunchWhat">Lunch What</label>
+                    <select id="lunchWhat" name="lunchWhat">
+                      <option value="">Select lunch</option>
+                      <option>Skip</option>
+                      <option>Rice</option>
+                      <option>Roti</option>
+                      <option>All</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row-grid">
+                  <div class="field-group">
+                    <span class="field-title">Snacks</span>
+                    <div class="toggle-group">
+                      <label class="toggle-pill">
+                        <input type="radio" name="snacks" value="Yes" />
+                        <span>Yes</span>
+                      </label>
+                      <label class="toggle-pill">
+                        <input type="radio" name="snacks" value="No" />
+                        <span>No</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="field-group hidden" id="snacksWhatRow">
+                    <label for="snacksWhat">Snacks What</label>
+                    <input id="snacksWhat" name="snacksWhat" type="text" placeholder="Enter snack details" />
+                  </div>
+                </div>
+
+                <div class="row-grid">
+                  <div class="field-group">
+                    <label for="dinnerTime">Dinner Time</label>
+                    <input id="dinnerTime" name="dinnerTime" type="time" />
+                  </div>
+                  <div class="field-group">
+                    <label for="dinnerWhat">Dinner What</label>
+                    <select id="dinnerWhat" name="dinnerWhat">
+                      <option value="">Select dinner</option>
+                      <option>Skip</option>
+                      <option>Rice</option>
+                      <option>Roti</option>
+                      <option>All</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row-2">
+                  <div class="field-group">
+                    <span class="field-title">Food Preference</span>
+                    <div class="food-grid">
+                      <label class="food-option">
+                        <input type="checkbox" name="foodPreference" value="Veg" />
+                        <span>Veg</span>
+                      </label>
+                      <label class="food-option">
+                        <input type="checkbox" name="foodPreference" value="Non-Veg" />
+                        <span>Non-Veg</span>
+                      </label>
+                      <label class="food-option">
+                        <input type="checkbox" name="foodPreference" value="Eggetarian" />
+                        <span>Eggetarian</span>
+                      </label>
+                      <label class="food-option">
+                        <input type="checkbox" name="foodPreference" value="Vegan" />
+                        <span>Vegan</span>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="field-group">
+                    <label for="waterIntake">Water Intake (liters per day)</label>
+                    <input id="waterIntake" name="waterIntake" type="number" min="0" step="0.1" placeholder="Enter liters per day" />
+                    <p class="water-note">Approx. 1 liter water per 20 kg body weight</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="step-panel" hidden>
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Step 3</p>
+              <h2>Health Checklist</h2>
+              <p class="section-copy">Mark current symptoms and relevant health concerns in a responsive consultation grid.</p>
+            </div>
+            <div class="section-badge">Health Snapshot</div>
+          </div>
+
+          <div class="stack">
+            <div class="full-card">
+              <div class="health-grid" id="healthChecklistGrid"></div>
+            </div>
+
+            <div class="sub-card">
+              <div class="field-group">
+                <label for="otherCondition">Other health condition</label>
+                <input id="otherCondition" name="otherCondition" type="text" placeholder="Enter any other condition" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="step-panel" hidden>
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Step 4</p>
+              <h2>Final Report</h2>
+              <p class="section-copy">A4-style printable report that updates automatically as the form changes.</p>
+            </div>
+            <div class="section-badge">Printable Summary</div>
+          </div>
+
+          <div class="report-stage">
+            <article class="report-page final-report-container" id="reportSheet">
+              <div class="report-top">
+                <div class="report-brand">
+                  <img class="report-logo" src="./gs-community-logo.png" alt="GS logo" />
+                  <div>
+                    <h2>GS Healthy Community</h2>
+                    <p>Body Parameter Record System</p>
+                  </div>
+                </div>
+                <a class="report-link" href="https://www.instagram.com/gs_wellness_team?igsh=MXEyenljbXkxcXZudA==" target="_blank" rel="noreferrer">
+                  <img src="./instagram.svg" alt="Instagram" />
+                  <span>@gs_wellness_team</span>
+                </a>
+              </div>
+
+              <div class="report-sheet-body">
+                <section class="report-section">
+                  <h3 class="report-section-title">1. Client Basic Info</h3>
+                  <div class="report-info-grid" id="reportClientInfo"></div>
+                </section>
+
+                <div class="final-report-grid">
+                  <div class="column-left">
+                    <section class="report-section summary-box">
+                      <h3 class="report-section-title">2. Body Parameter Summary</h3>
+                      <div class="summary-table body-parameter-summary" id="reportBodySummary"></div>
+                    </section>
+
+                    <section class="report-section">
+                      <h3 class="report-section-title nutrition-title">4. Nutrition Recommendation</h3>
+                      <div class="nutrition-box">
+                        <img src="./nutrition-pyramid.png" class="nutrition-image" alt="Nutrition pyramid" />
+                      </div>
+                    </section>
+                  </div>
+
+                  <div class="column-right">
+                    <section class="report-section health-box">
+                      <h3 class="report-section-title">3. Health Conditions Summary</h3>
+                      <div class="conditions-summary-grid" id="reportConditions"></div>
+                    </section>
+
+                    <section class="report-section program-box">
+                      <h3 class="report-section-title">5. Program Plan</h3>
+                      <div class="who-title">WHO 70% Need Doctor Visit</div>
+                      <div class="program-metrics">
+                        <div class="metric-box">
+                          80%
+                          <span>Nutrition</span>
+                        </div>
+                        <div class="metric-box">
+                          20%
+                          <span>Workout</span>
+                        </div>
+                        <div class="metric-box">
+                          100%
+                          <span>Guarantee Result</span>
+                        </div>
+                      </div>
+                      <div class="program-card">
+                        <div class="field-group">
+                          <label for="programDuration">Program Duration</label>
+                          <input id="programDuration" name="programDuration" type="number" min="0" step="1" placeholder="Enter duration" />
+                        </div>
+                        <div class="total-amount" id="programTotalValue">Total Amount = Rs. 0</div>
+                      </div>
+                    </section>
+                  </div>
+                </div>
+              </div>
+              <footer class="app-footer report-footer">GS Healthy Community Wellness Coaching Tool - Created By Yogesh</footer>
+            </article>
+          </div>
+        </section>
+
+        <div class="step-footer">
+          <p class="step-status" id="currentStepLabel">Step 1 of 4</p>
+          <div class="nav-group">
+            <button class="nav-btn secondary" id="prevButton" type="button">Previous</button>
+            <button class="nav-btn primary" id="nextButton" type="button">Next</button>
+          </div>
+        </div>
+      </form>
+
+      <footer class="app-footer">GS Healthy Community Wellness Coaching Tool - Created By Yogesh</footer>
+    </main>
+
+    <script src="./html2pdf.bundle.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
