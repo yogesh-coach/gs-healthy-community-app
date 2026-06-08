@@ -356,31 +356,38 @@ function syncStepUi() {
   nextButton.disabled = currentStep === steps.length - 1;
 }
 
-function downloadPdf() {
+async function downloadPdf() {
   setStep(3);
 
-  if (typeof window.html2pdf === "undefined") {
-    window.print();
-    return;
-  }
+  await new Promise(resolve => setTimeout(resolve, 300));
 
   const filename = buildPdfFileName();
+
   const options = {
-    margin: [0.1, 0.1, 0.1, 0.1],
+    margin: 0,
     filename,
-    image: { type: "jpeg", quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true, backgroundColor: "#f5f7f1" },
-    jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
-    pagebreak: { mode: ["avoid-all"] },
-    enableLinks: true,
+    image: { type: "jpeg", quality: 1 },
+    html2canvas: {
+      scale: 2,
+      useCORS: true
+    },
+    jsPDF: {
+      unit: "in",
+      format: "a4",
+      orientation: "portrait"
+    },
+    pagebreak: { mode: ["css", "legacy"] }
   };
 
-  window.html2pdf().set(options).from(reportSheet).save();
+  html2pdf()
+    .set(options)
+    .from(reportSheet)
+    .save();
 }
 
 function buildPdfFileName() {
   const name = getValue("name").trim().replace(/\s+/g, "-").toLowerCase() || "client-report";
-  return `${name}-gs-healthy-community-report.pdf`;
+  return `${name}-report.pdf`;
 }
 
 function calculateIdealWeight(height) {

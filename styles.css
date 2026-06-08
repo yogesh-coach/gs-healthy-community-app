@@ -350,7 +350,6 @@ h3 {
 .field-group input,
 .field-group select,
 .field-group textarea {
-  width: 100%;
   padding: 13px 14px;
   border-radius: 14px;
   border: 1px solid var(--line-strong);
@@ -388,7 +387,9 @@ h3 {
 }
 
 .toggle-pill {
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   padding: 12px 15px;
   border-radius: 999px;
