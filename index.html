@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GS Healthy Community – Body Parameter Record System</title>
+    <title>GS Healthy Community - Body Parameter Record System</title>
+    <link rel="icon" type="image/x-icon" href="/gs-community-logo.png">
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -208,7 +208,7 @@
                     <input id="breakfastTime" name="breakfastTime" type="time" />
                   </div>
                   <div class="field-group">
-                    <label for="breakfastWhat">Breakfast What</label>
+                    <label for="breakfastWhat">Breakfast Details</label>
                     <select id="breakfastWhat" name="breakfastWhat">
                       <option value="">Select breakfast</option>
                       <option>Skip</option>
@@ -230,7 +230,7 @@
                     <input id="lunchTime" name="lunchTime" type="time" />
                   </div>
                   <div class="field-group">
-                    <label for="lunchWhat">Lunch What</label>
+                    <label for="lunchWhat">Lunch Details</label>
                     <select id="lunchWhat" name="lunchWhat">
                       <option value="">Select lunch</option>
                       <option>Skip</option>
@@ -257,7 +257,7 @@
                     </div>
                   </div>
                   <div class="field-group hidden" id="snacksWhatRow">
-                    <label for="snacksWhat">Snacks What</label>
+                    <label for="snacksWhat">Snacks Details</label>
                     <input id="snacksWhat" name="snacksWhat" type="text" placeholder="Enter snack details" />
                   </div>
                 </div>
@@ -268,7 +268,7 @@
                     <input id="dinnerTime" name="dinnerTime" type="time" />
                   </div>
                   <div class="field-group">
-                    <label for="dinnerWhat">Dinner What</label>
+                    <label for="dinnerWhat">Dinner Details</label>
                     <select id="dinnerWhat" name="dinnerWhat">
                       <option value="">Select dinner</option>
                       <option>Skip</option>
@@ -358,7 +358,7 @@
                   </div>
                 </div>
                 <a class="report-link" href="https://www.instagram.com/gs_wellness_team?igsh=MXEyenljbXkxcXZudA==" target="_blank" rel="noreferrer">
-                  <img src="./instagram.svg" alt="Instagram" />
+                  <img src="./Instagram.png" alt="Instagram" />
                   <span>@gs_wellness_team</span>
                 </a>
               </div>
@@ -371,17 +371,17 @@
 
                 <div class="final-report-grid">
                   <div class="column-left">
-                    <section class="report-section summary-box">
+                <section class="report-section summary-box">
                       <h3 class="report-section-title">2. Body Parameter Summary</h3>
                       <div class="summary-table body-parameter-summary" id="reportBodySummary"></div>
-                    </section>
+                </section>
 
                     <section class="report-section">
                       <h3 class="report-section-title nutrition-title">4. Nutrition Recommendation</h3>
-                      <div class="nutrition-box">
+                    <div class="nutrition-box">
                         <img src="./nutrition-pyramid.png" class="nutrition-image" alt="Nutrition pyramid" />
-                      </div>
-                    </section>
+                    </div>
+                  </section>
                   </div>
 
                   <div class="column-right">
@@ -393,27 +393,27 @@
                     <section class="report-section program-box">
                       <h3 class="report-section-title">5. Program Plan</h3>
                       <div class="who-title">WHO 70% Need Doctor Visit</div>
-                      <div class="program-metrics">
-                        <div class="metric-box">
-                          80%
-                          <span>Nutrition</span>
-                        </div>
-                        <div class="metric-box">
-                          20%
-                          <span>Workout</span>
-                        </div>
-                        <div class="metric-box">
-                          100%
-                          <span>Guarantee Result</span>
-                        </div>
-                      </div>
-                      <div class="program-card">
-                        <div class="field-group">
+                  <div class="program-metrics">
+                    <div class="metric-box">
+                      80%
+                      <span>Nutrition</span>
+                    </div>
+                    <div class="metric-box">
+                      20%
+                      <span>Workout</span>
+                    </div>
+                    <div class="metric-box">
+                      100%
+                      <span>Guarantee Result</span>
+                    </div>
+                  </div>
+                  <div class="program-card">
+                    <div class="field-group">
                           <label for="programDuration">Program Duration</label>
                           <input id="programDuration" name="programDuration" type="number" min="0" step="1" placeholder="Enter duration" />
-                        </div>
+                    </div>
                         <div class="total-amount" id="programTotalValue">Total Amount = Rs. 0</div>
-                      </div>
+                    </div>
                     </section>
                   </div>
                 </div>
@@ -435,7 +435,7 @@
       <footer class="app-footer">GS Healthy Community Wellness Coaching Tool - Created By Yogesh</footer>
     </main>
 
-    <script src="./html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="./app.js"></script>
   </body>
 </html>
