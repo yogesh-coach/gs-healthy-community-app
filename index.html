@@ -348,7 +348,8 @@
           </div>
 
           <div class="report-stage">
-            <article class="report-page final-report-container" id="reportSheet">
+            <article class="report-page" id="reportSheet">
+
               <div class="report-top">
                 <div class="report-brand">
                   <img class="report-logo" src="./gs-community-logo.png" alt="GS logo" />
@@ -358,67 +359,57 @@
                   </div>
                 </div>
                 <a class="report-link" href="https://www.instagram.com/gs_wellness_team?igsh=MXEyenljbXkxcXZudA==" target="_blank" rel="noreferrer">
-                  <img src="./Instagram.png" alt="Instagram" />
+                  <img src="./Instagram.png" alt="Instagram" class="report-insta"/>
                   <span>@gs_wellness_team</span>
                 </a>
               </div>
 
               <div class="report-sheet-body">
+
                 <section class="report-section">
-                  <h3 class="report-section-title">1. Client Basic Info</h3>
+                  <h3 class="report-section-title">Client Basic Info</h3>
                   <div class="report-info-grid" id="reportClientInfo"></div>
                 </section>
 
                 <div class="final-report-grid">
                   <div class="column-left">
-                <section class="report-section summary-box">
-                      <h3 class="report-section-title">2. Body Parameter Summary</h3>
-                      <div class="summary-table body-parameter-summary" id="reportBodySummary"></div>
-                </section>
-
+                    <section class="report-section summary-box">
+                      <h3 class="report-section-title">Body Parameter Summary</h3>
+                      <div class="body-parameter-summary" id="reportBodySummary"></div>
+                    </section>
                     <section class="report-section">
-                      <h3 class="report-section-title nutrition-title">4. Nutrition Recommendation</h3>
-                    <div class="nutrition-box">
+                      <h3 class="report-section-title">Nutrition Recommendation</h3>
+                      <div class="nutrition-box">
                         <img src="./nutrition-pyramid.png" class="nutrition-image" alt="Nutrition pyramid" />
-                    </div>
-                  </section>
+                      </div>
+                    </section>
                   </div>
-
                   <div class="column-right">
                     <section class="report-section health-box">
-                      <h3 class="report-section-title">3. Health Conditions Summary</h3>
+                      <h3 class="report-section-title">Health Conditions Summary</h3>
                       <div class="conditions-summary-grid" id="reportConditions"></div>
                     </section>
-
                     <section class="report-section program-box">
-                      <h3 class="report-section-title">5. Program Plan</h3>
+                      <h3 class="report-section-title">Program Plan</h3>
                       <div class="who-title">WHO 70% Need Doctor Visit</div>
-                  <div class="program-metrics">
-                    <div class="metric-box">
-                      80%
-                      <span>Nutrition</span>
-                    </div>
-                    <div class="metric-box">
-                      20%
-                      <span>Workout</span>
-                    </div>
-                    <div class="metric-box">
-                      100%
-                      <span>Guarantee Result</span>
-                    </div>
-                  </div>
-                  <div class="program-card">
-                    <div class="field-group">
-                          <label for="programDuration">Program Duration</label>
-                          <input id="programDuration" name="programDuration" type="number" min="0" step="1" placeholder="Enter duration" />
-                    </div>
+                      <div class="program-metrics">
+                        <div class="metric-box">80%<span>Nutrition</span></div>
+                        <div class="metric-box">20%<span>Workout</span></div>
+                        <div class="metric-box">100%<span>Guarantee Result</span></div>
+                      </div>
+                      <div class="program-card">
+                        <div class="field-group">
+                          <label for="programDuration">Program Duration (Days)</label>
+                          <input id="programDuration" name="programDuration" type="number" min="0" step="1" placeholder="Enter duration"/>
+                        </div>
                         <div class="total-amount" id="programTotalValue">Total Amount = Rs. 0</div>
-                    </div>
+                      </div>
                     </section>
                   </div>
                 </div>
+
               </div>
-              <footer class="app-footer report-footer">GS Healthy Community Wellness Coaching Tool - Created By Yogesh</footer>
+              <footer class="report-footer">GS Healthy Community Wellness Coaching Tool - Created By Yogesh</footer>
             </article>
           </div>
         </section>

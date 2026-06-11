@@ -14,6 +14,7 @@
   --primary-glow: rgba(47, 139, 75, 0.18);
   --warn: #c88b23;
   --danger: #b54747;
+  --report-green: #1b7f5a;
   --shadow-lg: 0 24px 60px rgba(39, 85, 45, 0.12);
   --shadow-md: 0 16px 32px rgba(39, 85, 45, 0.08);
   --radius-xl: 28px;
@@ -65,8 +66,7 @@ a {
 
 .header-card,
 .tabs-card,
-.step-panel,
-.report-page {
+.step-panel {
   border: 1px solid rgba(255, 255, 255, 0.8);
   box-shadow: var(--shadow-lg);
   backdrop-filter: blur(18px);
@@ -94,9 +94,6 @@ a {
 .field-group,
 .toggle-group,
 .tab-list,
-.report-top,
-.report-brand,
-.report-link,
 .program-stat,
 .step-footer {
   display: flex;
@@ -270,8 +267,7 @@ h3 {
 .sub-card,
 .metric-card,
 .reference-box,
-.report-section,
-.program-card {
+.report-section {
   background: var(--surface-strong);
   border: 1px solid var(--line);
   box-shadow: var(--shadow-md);
@@ -279,8 +275,7 @@ h3 {
 
 .full-card,
 .sub-card,
-.reference-box,
-.program-card {
+.reference-box {
   border-radius: var(--radius-lg);
   padding: 22px;
 }
@@ -295,10 +290,7 @@ h3 {
 .metric-grid,
 .row-grid,
 .food-grid,
-.report-info-grid,
-.summary-table,
-.program-grid,
-.conditions-summary-grid {
+.program-grid {
   display: grid;
   gap: 16px;
 }
@@ -405,8 +397,7 @@ h3 {
 
 .sub-card h3,
 .reference-box h3,
-.report-section h3,
-.program-card h3 {
+.report-section h3 {
   margin-bottom: 16px;
 }
 
@@ -538,100 +529,23 @@ h3 {
   transform: none;
 }
 
-.report-stage {
-  display: flex;
-  justify-content: center;
-}
-
-.report-page {
-  width: min(100%, var(--a4-width));
-  min-height: var(--a4-height);
-  padding: 26px;
-  border-radius: 24px;
-  background: #f5f7f1;
-  color: #223026;
-  overflow: hidden;
-}
-
-.final-report-container {
-  width: 210mm;
-  min-height: 297mm;
-  margin: auto;
-}
-
-.report-top {
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 18px;
-  margin-bottom: 18px;
-}
-
-.report-brand {
-  align-items: center;
-  gap: 14px;
-}
-
-.report-logo {
-  width: 72px;
-  height: 72px;
-  object-fit: contain;
-}
-
-.report-link {
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  border-radius: 999px;
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  text-decoration: none;
-  font-size: 0.85rem;
-}
-
-.report-link img {
-  width: 18px;
-  height: 18px;
-}
-
-.report-sheet-body {
-  display: grid;
-  gap: 14px;
-}
-
-.final-report-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-top: 12px;
-}
-
-.column-left,
-.column-right {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
 .report-section {
-  border-radius: 20px;
+  border-radius: 6px;
   padding: 16px;
   overflow: hidden;
-}
-
-.summary-box,
-.health-box,
-.nutrition-box,
-.program-box {
-  width: 100%;
+  margin-bottom:10px;
 }
 
 .report-section-title {
   margin-bottom: 12px;
   font-size: 1rem;
-}
-
-.report-info-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  font-size:13px;
+  font-weight:700;
+  border-bottom:1.5px solid #80808050;
+  padding-bottom:5px;
+  margin-bottom:8px;
+  text-transform:uppercase;
+  letter-spacing:.04em;
 }
 
 .report-info-row,
@@ -639,34 +553,17 @@ h3 {
   display: grid;
   gap: 10px;
   align-items: center;
-  padding: 10px 12px;
-  border-radius: 14px;
+  padding: 8px 12px;
+  border-radius: 6px;
   background: #f9fcf8;
   border: 1px solid rgba(34, 62, 38, 0.06);
+  font-size: 13px;
 }
 
 .report-info-row {
   grid-template-columns: minmax(120px, 0.7fr) minmax(0, 1fr);
 }
 
-.summary-table {
-  gap: 10px;
-}
-
-.body-parameter-summary {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.summary-row {
-  padding: 6px 10px;
-  margin-bottom: 4px;
-  background: #f7faf8;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-}
 
 .main-line {
   font-size: 14px;
@@ -678,125 +575,187 @@ h3 {
 .sub-line {
   font-size: 12px;
   font-weight: 600;
-  color: #1b7f5a;
+  color: var(--report-green);
   margin-top: 2px;
   line-height: 1.1;
 }
 
-.body-parameter-summary .summary-row {
-  min-height: auto;
-}
-
-.conditions-summary-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
 .report-condition-item {
   padding: 10px 12px;
-  border-radius: 14px;
-  background: #f9fcf8;
+  border-radius: 6px;
+  background: #1b7f5a15;
   border: 1px solid rgba(34, 62, 38, 0.06);
   font-size: 0.93rem;
   line-height: 1.35;
   word-break: break-word;
-}
-
-.conditions-summary-grid.compact .report-condition-item {
-  font-size: 0.82rem;
-  padding: 8px 10px;
-}
-
-.health-box {
-  min-height: 260px;
-}
-
-.nutrition-title {
-  text-align: center;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.nutrition-box {
-  width: 100%;
-  height: 340px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  overflow: hidden;
-}
-
-.nutrition-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-}
-
-.program-box {
-  min-height: 260px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.who-title {
-  text-align: center;
-  font-size: 20px;
-  font-weight: 700;
-  color: #1b7f5a;
-  margin-bottom: 16px;
-}
-
-.program-metrics {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.metric-box {
-  background: #1b7f5a;
-  color: white;
-  padding: 10px;
-  border-radius: 10px;
-  text-align: center;
-  font-weight: 600;
-  width: 90px;
-}
-
-.metric-box span {
-  display: block;
-  font-size: 12px;
-  font-weight: 400;
-}
-
-.program-card {
-  background: linear-gradient(180deg, #ffffff 0%, #f4faf4 100%);
-}
-
-.program-card .field-group {
-  margin-top: 12px;
-}
-
-.total-amount {
-  font-weight: 600;
-  margin-top: 10px;
-  color: var(--primary-dark);
+  color: var(--report-green);
+  font-weight: bold;
 }
 
 .app-footer {
-  text-align: center;
-  font-size: 13px;
-  text-align: center;
   color: #5f6f66;
   margin-top: 18px;
   padding-bottom: 10px;
+  text-align:center;
+  font-size:11px;
+}
+
+.report-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 20px;
+  border-bottom:2px solid #80808050;
+}
+
+.report-brand {
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.report-logo {
+  width:44px;
+  height:44px;
+}
+
+.report-brand h2 {
+  font-size:18px;
+  font-weight:800;
+}
+
+.report-brand p {
+  font-size:11px;
+  color:#808080;
+}
+
+.report-link {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  text-decoration:none;
+  font-size:12px;
+}
+
+.report-sheet-body {
+  padding:14px 18px 10px;
+}
+
+.report-info-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:5px;
+}
+
+.final-report-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.column-left,
+.column-right {
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.summary-box {flex:1;}
+
+.body-parameter-summary {
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+
+.summary-row {
+  display:grid;
+  grid-template-columns:200px 1fr auto;
+  align-items:center;
+  gap:6px;
+  background:#80808015; 
+  border:1px solid #80808030;
+  border-radius:6px;
+  padding:7px 10px;
+  font-size:11px;
+}
+
+.nutrition-box {
+  display: flex; 
+  justify-content: center;
+}
+
+.nutrition-image {max-height:300px;}
+
+.health-box .conditions-summary-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:5px;
+}
+
+.who-title {
+  text-align:center;
+  font-weight:800;
+  color:var(--report-green);
+  font-size:14px;
+  margin-bottom:8px;
+}
+
+.program-metrics {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:6px;
+  margin-bottom:8px;
+}
+
+.metric-box {
+  background:var(--report-green);
+  color:#fff;
+  border-radius:6px;
+  padding:10px 6px;
+  text-align:center;
+  font-size:18px;
+  font-weight:800;
+}
+
+.metric-box span {
+  display:block;
+  font-size:10px;
+  font-weight:500;
+  margin-top:2px;
+}
+
+.program-card {padding:10px;}
+
+.program-card .field-group label {
+  font-size:11px;
+  font-weight:600;
+}
+
+.program-card input {
+  width:100%;
+  padding:6px 8px;
+  border:1px solid #80808050;
+  border-radius:6px;
+  margin-top:4px;
+  font-size:12px;
+}
+
+.total-amount {margin-top:16px;
+  font-size:14px;
+  font-weight:700;
+  color:var(--report-green);
 }
 
 .report-footer {
-  margin-top: 14px;
-  padding-bottom: 0;
+  text-align:center;
+  font-size:10px;
+  color:#808080;
+  padding:8px;
+  margin-top:8px;
 }
+
+.report-insta {width: 20px;}
 
 @media (max-width: 1080px) {
   .fields-grid.six,
@@ -805,10 +764,6 @@ h3 {
   }
 
   .body-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .final-report-grid {
     grid-template-columns: 1fr;
   }
 
@@ -830,8 +785,7 @@ h3 {
 
   .header-card,
   .section-heading,
-  .step-footer,
-  .report-top {
+  .step-footer {
     flex-direction: column;
     align-items: stretch;
   }
@@ -855,21 +809,12 @@ h3 {
   .row-2,
   .row-3,
   .food-grid,
-  .metric-grid,
-  .report-info-grid,
-  .summary-row,
-  .conditions-summary-grid,
-  .final-report-grid {
+  .metric-grid {
     grid-template-columns: 1fr;
   }
 
   .health-grid {
     grid-template-columns: 1fr;
-  }
-
-  .report-page {
-    padding: 18px;
-    min-height: auto;
   }
 
   .summary-row {
@@ -882,59 +827,74 @@ h3 {
 }
 
 @media print {
-  body {
-    background: #ffffff;
+  @page {
+    size: A4 portrait;
+    margin: 8mm 8mm 8mm 8mm;
   }
 
-  .header-card,
-  .tabs-card,
-  .step-footer,
-  .section-heading,
-  .app-footer:not(.report-footer) {
-    display: none !important;
+  body * { visibility: hidden; }
+
+  #reportSheet,
+  #reportSheet * { visibility: visible; }
+
+  #reportSheet {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    font-size: 11px !important;
+    background: #fff !important;
   }
 
-  .step-panel {
-    display: none !important;
-    box-shadow: none;
-    border: 0;
-    padding: 0;
-    margin: 0;
-  }
+  .report-top { padding: 10px 14px !important; }
+  .report-sheet-body { padding: 10px 14px 6px !important; }
+  .report-section { margin-bottom: 7px !important; page-break-inside: avoid; break-inside: avoid; }
+  .report-section-title { padding-bottom: 3px !important; margin-bottom: 5px !important; }
 
-  .step-panel.active {
-    display: block !important;
+  .report-info-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3,1fr) !important;
+    gap: 4px !important;
   }
-
-  .report-page {
-    width: 210mm;
-    min-height: 297mm;
-    border: 0;
-    border-radius: 0;
-    box-shadow: none;
-    margin: 0;
-    padding: 10mm;
-  }
+  .info-row { padding: 4px 8px !important; }
 
   .final-report-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
   }
 
-  .nutrition-box {
-    height: 360px;
+  .summary-row { padding: 3px 8px !important; font-size: 10px !important; }
+  .summary-row strong { font-size: 10px !important; }
+
+  .nutrition-image { max-height: 130px !important; }
+
+  .metric-box { padding: 7px 4px !important; font-size: 15px !important; }
+
+  .program-card { padding: 7px !important; }
+  .program-card input { display: none !important; }
+
+  .column-right {
+    justify-content: flex-start !important;
+    height: auto !important;
   }
 
-  .summary-row {
-    padding: 4px 8px;
-    margin-bottom: 2px;
+  .program-box {
+    margin-top: 0 !important;
   }
 
-  .main-line {
-    font-size: 13px;
-  }
+  .metric-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: #0d9488 !important; color: #fff !important; }
+  .condition-pill { -webkit-print-color-adjust: exact; print-color-adjust: exact; background: #dcfce7 !important; color: #166534 !important; }
+  .who-title { color: #16a34a !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .total-amount { color: #16a34a !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .summary-row { background: #f9fafb !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .info-row { background: #f9fafb !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .report-section-title { color: #374151 !important; }
 
-  .sub-line {
-    font-size: 11px;
-  }
+  .final-report-grid { page-break-inside: avoid; break-inside: avoid; }
+  .summary-row { page-break-inside: avoid; break-inside: avoid; }
 }
