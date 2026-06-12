@@ -173,7 +173,7 @@ function renderReport() {
   conditionsBox.classList.toggle("compact", selectedConditions.length > 8);
   conditionsBox.innerHTML = selectedConditions.length
     ? selectedConditions.map((item) => `<div class="report-condition-item">${escapeHtml(item)}</div>`).join("")
-    : `<div class="report-condition-item muted">No health condition selected</div>`;
+    : `<div class="report-condition-item muted">No Health Issues</div>`;
 
 }
 
