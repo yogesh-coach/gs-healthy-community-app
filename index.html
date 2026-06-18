@@ -118,10 +118,6 @@
                       <input id="visceralFat" name="visceralFat" type="number" min="0" step="0.1" placeholder="Visceral fat" />
                     </div>
                     <div class="field-group">
-                      <label for="bmi">BMI (manual)</label>
-                      <input id="bmi" name="bmi" type="number" min="0" step="0.1" placeholder="Manual BMI" />
-                    </div>
-                    <div class="field-group">
                       <label for="bmr">BMR</label>
                       <input id="bmr" name="bmr" type="number" min="0" step="0.1" placeholder="BMR value" />
                     </div>
@@ -135,10 +131,10 @@
                     <article class="metric-card highlight">
                       <span>Ideal Weight</span>
                       <strong id="idealWeightValue">--</strong>
-                      <small>Ideal Weight = height - 100</small>
+                      <small>Ideal Weight = height - 105</small>
                     </article>
                     <article class="metric-card">
-                      <span>BMI Auto Result</span>
+                      <span>BMI Result</span>
                       <strong id="bmiAutoValue">--</strong>
                       <small id="bmiAutoCaption">Enter height and weight</small>
                     </article>
@@ -158,7 +154,7 @@
                   <div>Female Fat Normal = 20%-30%</div>
                   <div>Visceral Fat Normal = 1%-9%</div>
                   <div>BMI Normal = 18.5-24.9</div>
-                  <div id="bodyFatNormalRange">Normal 10-20% / 20-30%</div>
+                  <div id="bodyFatNormalRange"></div>
                 </div>
               </aside>
             </div>
@@ -331,7 +327,7 @@
             <div class="sub-card">
               <div class="field-group">
                 <label for="otherCondition">Other health condition</label>
-                <input id="otherCondition" name="otherCondition" type="text" placeholder="Enter any other condition" />
+                <input id="otherCondition" name="otherCondition" type="text" placeholder="Enter any other health condition" onkeydown="if(event.key === 'Enter') addOtherHealthConditions()"/>
               </div>
             </div>
           </div>
@@ -380,7 +376,7 @@
                     <section class="report-section">
                       <h3 class="report-section-title">Nutrition Recommendation</h3>
                       <div class="nutrition-box">
-                        <img src="./nutrition-pyramid.png" class="nutrition-image" alt="Nutrition pyramid" />
+                        <img src="./nutrition-pyramid.jpeg" class="nutrition-image" alt="Nutrition pyramid" />
                       </div>
                     </section>
                   </div>
@@ -400,7 +396,7 @@
                       <div class="program-card">
                         <div class="field-group">
                           <label for="programDuration">Program Duration (Days)</label>
-                          <input id="programDuration" name="programDuration" type="number" min="0" step="1" placeholder="Enter duration"/>
+                          <input id="programDuration" name="programDuration" type="number" min="0" step="1" placeholder="Enter duration" onkeydown="if(event.key === 'Enter') calculateCost()"/>
                         </div>
                         <div class="total-amount" id="programTotalValue">Total Amount = Rs. 0</div>
                       </div>
@@ -409,7 +405,7 @@
                 </div>
 
               </div>
-              <footer class="report-footer">GS Healthy Community Wellness Coaching Tool - Created By Yogesh</footer>
+              <footer class="report-footer">GS Healthy Community Wellness Coaching Tool - Presented By Yogesh</footer>
             </article>
           </div>
         </section>
@@ -423,7 +419,7 @@
         </div>
       </form>
 
-      <footer class="app-footer">GS Healthy Community Wellness Coaching Tool - Created By Yogesh</footer>
+      <footer class="app-footer">GS Healthy Community Wellness Coaching Tool - Presented By Yogesh</footer>
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>

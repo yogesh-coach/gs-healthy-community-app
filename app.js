@@ -1,24 +1,24 @@
 const STORAGE_KEY = "gs-healthy-community-record";
 const PROGRAM_RATE = 300;
 const HEALTH_CONDITIONS = [
+  "Diabetes",
+  "High BP",
+  "Low BP",
+  "Thyroid",
+  "Cholesterol",
+  "Back Pain",
+  "Knee Pain",
+  "Shoulder Pain",
+  "Joint Pain",
+  "Full Body Pain",
   "Headache / Dizziness",
   "Gas / Acidity",
   "Constipation / Motion Issues",
-  "Tiredness",
-  "Weakness",
-  "Low Energy",
+  "Tiredness / Weakness",
   "Breathing Issues",
   "Hungry Frequently",
-  "Period Problem",
-  "PCOS / PCOD",
-  "Diabetes",
-  "Thyroid",
   "Sleep Issues",
-  "High BP",
-  "Low BP",
-  "Joint Pain",
-  "Knee Pain",
-  "Back Pain",
+  "Period Problem / PCOS / PCOD",
 ];
 
 const form = document.getElementById("healthForm");
@@ -126,7 +126,7 @@ function updateAutoMetrics() {
   const bmiCategoryBadge = document.getElementById("bmiCategoryAuto");
 
   document.getElementById("idealWeightValue").textContent = idealWeight === null ? "--" : `${formatNumber(idealWeight)} kg`;
-  document.getElementById("bmiAutoValue").textContent = autoBmi === null ? "--" : formatNumber(autoBmi);
+  document.getElementById("bmiAutoValue").textContent = autoBmi === null ? "--" : autoBmi;
   document.getElementById("bmiAutoCaption").textContent = autoBmi === null ? "Enter height and weight" : "Auto BMI based on height and weight";
   document.getElementById("bmiCategoryAuto").textContent = bmiCategory;
 
@@ -135,7 +135,9 @@ function updateAutoMetrics() {
 
   const bodyFatNormal = getBodyFatNormalRange();
   document.getElementById("bodyFatNormalRange").textContent = bodyFatNormal;
+}
 
+function calculateCost() {
   const duration = getNumber("programDuration");
   const totalAmount = duration === null ? 0 : duration * PROGRAM_RATE;
   document.getElementById("programTotalValue").textContent = `Total Amount = Rs. ${totalAmount ? formatNumber(totalAmount) : "0"}`;
@@ -200,9 +202,9 @@ function collectData() {
   const height = getNumber("height");
   const weight = getNumber("weight");
   const autoBmi = calculateBmi(height, weight);
-  const manualBmi = getNumber("bmi");
-  const reportBmi = manualBmi ?? autoBmi;
+  const reportBmi = autoBmi;
   const idealWeight = calculateIdealWeight(height);
+  const bodyFatNormal = getBodyFatNormalRange() ?? "Male 10%-20% / Female 20%-30%";
   const selectedConditions = Array.from(document.querySelectorAll('input[name="healthConditions"]:checked')).map((input) => input.value);
   const programDuration = getNumber("programDuration");
   const totalAmount = (programDuration ?? 0) * PROGRAM_RATE;
@@ -220,7 +222,6 @@ function collectData() {
     weight: getValue("weight"),
     bodyFat: getValue("bodyFat"),
     visceralFat: getValue("visceralFat"),
-    bmi: getValue("bmi"),
     bmr: getValue("bmr"),
     bodyAge: getValue("bodyAge"),
     wakeUpTime: getValue("wakeUpTime"),
@@ -242,13 +243,13 @@ function collectData() {
     autoBmi,
     reportBmi,
     reportBmiCategory: getBmiCategory(reportBmi),
-    bodyFatNormal: getBodyFatNormalRange(),
+    bodyFatNormal,
     heightText: height === null ? "--" : `${formatNumber(height)} cm`,
     weightText: weight === null ? "Weight - --" : `${formatNumber(weight)} kg`,
     idealWeightText: idealWeight === null ? "Ideal -- kg" : `Ideal ${formatNumber(idealWeight)} kg`,
     bodyFatText: valueWithUnit(getValue("bodyFat"), "%"),
     visceralFatText: valueOrFallback(getValue("visceralFat")),
-    reportBmiText: reportBmi === null ? "--" : formatNumber(reportBmi),
+    reportBmiText: reportBmi === null ? "--" : reportBmi,
     totalAmount,
   };
 }
@@ -390,17 +391,54 @@ function buildPdfFileName() {
   return `${name}-report.pdf`;
 }
 
+function addOtherHealthConditions() {
+  const input = document.getElementById("otherCondition");
+  const condition = input.value.trim();
+
+  if (!condition || HEALTH_CONDITIONS.includes(condition)) {
+    input.value = "";
+    return;
+  }
+
+  HEALTH_CONDITIONS.push(condition);
+
+  const selectedConditions = Array.from(
+    document.querySelectorAll('input[name="healthConditions"]:checked')
+  ).map(input => input.value);
+
+  selectedConditions.push(condition);
+
+  buildHealthChecklist();
+
+  selectedConditions.forEach(value => {
+    const checkbox = document.querySelector(
+      `input[name="healthConditions"][value="${value}"]`
+    );
+
+    if (checkbox) {
+      checkbox.checked = true;
+    }
+  });
+
+  updateUi();
+  persistData();
+
+  input.value = "";
+}
+
 function calculateIdealWeight(height) {
-  return height === null ? null : Math.max(height - 100, 0);
+  return height === null ? null : Math.max(height - 105, 0);
 }
 
 function calculateBmi(height, weight) {
-  if (height === null || weight === null || height <= 0) {
+  if (height === null || weight === null || height <= 0 || weight <= 0) {
     return null;
   }
 
   const meters = height / 100;
-  return weight / (meters * meters);
+  const bmi = weight / (meters * meters);
+
+  return Number(bmi.toFixed(2));
 }
 
 function getBmiCategory(bmi) {
@@ -422,12 +460,12 @@ function getBmiCategory(bmi) {
 function getBodyFatNormalRange() {
   const gender = getRadioValue("gender");
   if (gender === "Male") {
-    return "Normal 10-20%";
+    return "Normal Fat Range = 10-20%";
   }
   if (gender === "Female") {
-    return "Normal 20-30%";
+    return "Normal Fat Range = 20-30%";
   }
-  return "Normal 10-20% / 20-30%";
+  return null;
 }
 
 function getValue(id) {
